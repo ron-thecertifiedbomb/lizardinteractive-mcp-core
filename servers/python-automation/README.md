@@ -1,0 +1,1 @@
+DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector uv run server.py

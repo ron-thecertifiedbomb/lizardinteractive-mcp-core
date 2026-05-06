@@ -1,0 +1,5 @@
+# Limit AI responses for automation commands
+When I type commands prefixed with '!exec', execute them directly without analysis.
+Don't add explanatory text to terminal command outputs.
+Don't modify or analyze my automation scripts unless I ask.
+Let terminal commands run exactly as written.
