@@ -1,0 +1,5 @@
+mcp[cli]
+psutil
+PyPDF2
+requests
+beautifulsoup4

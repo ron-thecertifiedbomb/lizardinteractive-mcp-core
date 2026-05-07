@@ -26,7 +26,7 @@ function printDir(dirPath, prefix = "", depth = 0, maxDepth = 5) {
         fullPath,
         prefix + (isLast ? "    " : "│   "),
         depth + 1,
-        maxDepth
+        maxDepth,
       );
     }
   });
