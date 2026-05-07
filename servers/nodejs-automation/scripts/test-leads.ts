@@ -39,6 +39,9 @@ async function localTest() {
               ...job,
               ...analysis,
               status: "test",
+              updatedAt: new Date(),
+            },
+            $setOnInsert: {
               createdAt: new Date(),
             },
           },

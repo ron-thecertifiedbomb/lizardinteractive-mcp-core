@@ -20,7 +20,13 @@ function updateJsonFile(filePath, replacer) {
 function replaceInFile(filePath, oldName, newName) {
   if (fs.existsSync(filePath)) {
     const content = fs.readFileSync(filePath, "utf8");
-    const updated = content.replace(new RegExp(oldName, "g"), newName);
+
+    // Escape regex characters and use word boundaries to avoid partial matches
+    // Replaced \b with negative lookarounds to match scoped npm packages like "@org/name"
+    const escapedOldName = oldName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`(?<!\\w)${escapedOldName}(?!\\w)`, "g");
+
+    const updated = content.replace(regex, newName);
     fs.writeFileSync(filePath, updated);
   }
 }
@@ -90,7 +96,7 @@ function renameProject(newName) {
       "app",
       "src",
       "main",
-      "AndroidManifest.xml"
+      "AndroidManifest.xml",
     );
     replaceInFile(manifest, oldName, newName);
   }

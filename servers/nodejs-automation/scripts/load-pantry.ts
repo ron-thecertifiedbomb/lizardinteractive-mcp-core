@@ -2,8 +2,13 @@ const { MongoClient } = require("mongodb");
 require("dotenv").config(); // Ensure you have your .env loaded
 
 // Use your verified Standard URI for local stability
-const URI =
-  "mongodb://lizrd_architect:Ronan_1980@cluster0-shard-00-00.gdgvcmj.mongodb.net:27017,cluster0-shard-00-01.gdgvcmj.mongodb.net:27017,cluster0-shard-00-02.gdgvcmj.mongodb.net:27017/lizrd_core?ssl=true&replicaSet=atlas-gdgvcm-shard-0&authSource=admin&retryWrites=true&w=majority";
+const URI = process.env.MONGODB_URI;
+if (!URI) {
+  console.error(
+    "✖ CRITICAL FAILURE: MONGODB_URI is not set in your .env file.",
+  );
+  process.exit(1);
+}
 
 async function loadPantry() {
   const client = new MongoClient(URI);
